@@ -12,8 +12,28 @@ void programMenu();
 void displayScoreBoard();
 void gameOver();
 template <typename T>
-T validInput(T){
-
+bool validInput(T c, int a){
+    if(a==0){
+        return true;
+    }
+    else if(a!=0){
+        if(c>0&&c<a+1){
+            return true;
+        }
+        else{
+            cout<<"ERROR: enter valid input"<<endl;
+            return false;
+        }
+    }
+    else {
+        if(c!="X"||c!="x"||x!="O"||c!="o"){
+           cout<<"ERROR: enter valid input"<<endl;
+            return false; 
+        }
+        else{
+            return true;
+        }
+    }
 }
 
 #endif

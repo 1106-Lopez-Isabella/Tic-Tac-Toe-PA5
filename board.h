@@ -4,14 +4,19 @@
 #include "player.h"
 using namespace std;
 class Board{
-    char board [3][3];
+    string board [3][3];
+    int maxRow,maxColumn;
     public:
         Board();
         Board(int, int);
         Board(const Board&);
 
+        getMaxRow
+        getMaxColumn
 
-        void updateBoard();
+
+        void updateBoardInfo();
+        void displayBoard();
         bool boardFull();
         int won();
         void gameOver();

@@ -24,6 +24,8 @@ class User{
         void setColumn();
         void setWin();
 
+        void displayPlayerData();
+
         virtual void makeMove()=0;
 };
 };

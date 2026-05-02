@@ -1,21 +1,78 @@
 #include "board.h"
 
-int main(){
-    programMenu();
-    
-}
-displays main programMenu
-asks user to make a choice (quit start view scoreBoard) 
-calls validInput
-if valid continue with option 
-if quit, end game. 
-if view score board, show score board 
-if start:
-ask for name 
-ask for 1 or 2 player
-ask for symbol 
+int main(int argc, char** argv){
+    Player playerOne;
+    Player playerTwo;
+    Computer computer;
+    User* usersArr[2];
+    Player topPlayers[5];
+    Board board;
+    int choice, choice2, playerAmount=1;
 
-(use validInput for these)
+	if(argc != 2)
+	{
+        cout << "Incorrect format! Please use:  ./game top5Players.txt" << endl;
+        return 1;
+    }
+
+	ifstream playerData(argv[1]);
+    if(!top5Players.is_open())
+	{
+        cout << "Top 5 Player File not found..." << endl;
+        return 1;
+    }
+
+    do{
+        choice=programMenu();
+        switch choice{
+            case 1:
+                playerOne=createPlayer(playerAmount,"-");
+                playerAmount++;
+                cout<<"Do you want to play with (1) another Person or (2) a Computer"<<endl;
+                do{
+                    cin>>choice2;
+                    validInput(choice2,2);
+                }while(!validInput<int>(choice2,2));
+
+                switch choice{
+                    case 1:
+                        cout<<"Player two, enter your information..."<<endl;
+                        playerTwo=createPlayer(playerAmount,playerOne.getSymbol);
+                        playerAmount++;
+                    case 2:
+                        computer=createComputer(playerOne.getSymbol);
+                    default:
+                        cout<<"ERROR: check line 44 in main"<<endl;
+                }
+                if(playerAmount==2){
+                    if(playerOne.getSymbol()=="X"){
+                        usersArr[0]=&playerOne;
+                        usersArr[1]=&playerTwo ; 
+                    }
+                else{
+                    usersArr[0]=&playerTwo;
+                    usersArr[1]=&playerOne;
+                }
+                }
+                else{
+                    if(playerOne.getSymbol()=="X"){
+                        usersArr[0]=&playerOne;
+                        usersArr[1]=&computer;
+                    }
+                    else{
+                        usersArr[0]=&computer;
+                        usersArr[1]=&playerOne;
+                    }
+                }
+                startGame();
+            case 2:
+                viewScoreBoard();
+            default:
+                cout<<"ERROR: check line 70 in main";
+                return 0;
+        }
+    } while (choice != 0);
+}
 
 after these questions, make both users, game will start 
 whoever chose X will go first

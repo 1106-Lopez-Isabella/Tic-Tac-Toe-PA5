@@ -1,37 +1,102 @@
-template <typename T>
-T validInput(T c, int a){
-    string type;
-    switch(t){
-        case "i":
-            type=int;
-        case ch:
-            type=char;
-        default:
-        cout<<"ERROR: Check programMenu";
-        return;
+void readCoursesFile(ifstream& inFile, Player arrPlayer)
+{
+	int count = 0; 
+	int numC;
+	string name;
+    int wins, losts;
+	getline(inFile, junk);
+    for(int i=0;i<5;i++){
+	    while(!inFile.eof())
+	    {
+            getline(inFile, junk);
+            getline(inFile,junk,':');
+            getline(inFile,name);
+		    arrPlayer[i].setName(name);
+
+		    getline(inFile, junk, ':');
+		    getline(inFile,wins);
+		    arrPlayer[i].setWin(wins);
+
+		    getline(inFile, junk, ':');
+		    getline(inFile,losts);
+		    arrPlayer[i].setLose(losts);
+
+	    }
     }
-    if(type==i){
-        if(c>=0&&c<a+1){
-            return true;
+}
+int programMenu(){
+    cout<<"--------------------TIC-TAC-TOE-----------------------"<<endl<<cout<<"                      Welcome!                      "<<endl;
+    cout<<"Start Game (1)    View Score Board (2)   Exit Menu (0)"<<endl;
+    
+    do{
+        cin>>choice;
+        validInput(choice,2);
+    }while(!validInput<int>(choice,2));
+
+    return choice;
+}
+Player createPlayer(int amount, string s){
+	Player player;
+	string name, symbol;
+
+	cout << "Please enter your first name: " << endl;
+    cin>>name;
+    player.setName(name);
+    if(playerAmount==1){
+	    cout << "Please choose either the X or O: " << endl;
+	    do{
+            cin>>symbol;
+            validInput(symbol,9);
+        }while(!validInput<string>(symbol,9));
+        
+        if(symbol=="X"||symbol=="x"){
+            symbol="X";
         }
         else{
-            cout<<"ERROR: enter valid input"
-            return false;
+            symbol="O";
         }
     }
     else{
-        if(c!="X"||c!="x"||x!="O"||c!="o"){
-           cout<<"ERROR: enter valid input"
-            return false; 
+        if(s=="X"){
+            cout<<"Your symbol will be O"<<endl;
+            symbol="O";
         }
         else{
-            return true;
+            cout<<"Your symbol will be X"<<endl;
+            symbol="X";
         }
     }
+    player.setSymbol(symbol);
+	return player;
 }
-programMenu(int choice){
-    cout<<"--------------------TIC-TAC-TOE-----------------------"<<endl<<cout<<"                      Welcome!                      "<<endl;
-    cout<<"Start Game (1)    View Score Board (2)   Exit Menu (3)"endl;
-    cin>>choice
-    choice=validInput<int>(choice,3);
+Computer createComputer(string symbol)
+{
+	Computer computer;
+
+    computer.setName("Computer");
+    if(symbol=="X"){
+        computer.setSymbol("O");
+    }
+    else{
+        computer.setSymbol("X");
+    }
+
+	return player;
+}
+void startGame() {
+    cout<<"If you want to return to the main menu at any point, please enter 0"<<endl;
+    bool gameOver = false;
+    int i=0;
+    while (!gameOver) {
+        cout<<usersArr[i]->getName<<", your turn!"<<endl;
+        displayBoard();
+        int choice=makeMove();
+
+        if (choice == "0") { 
+            return;
+        }
+        updateBoardInfo();
+        gameOver=won();
+        gameOver=boardFull();
+    }
 }
