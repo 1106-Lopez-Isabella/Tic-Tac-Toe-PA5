@@ -1,0 +1,15 @@
+#ifndef COMPUTER_H
+#define COMPUTER_H
+#include <iostream>
+#include <cstdlib>
+using namespace std;
+class Computer:public User{
+
+    public:
+        Computer();
+        Computer(string,string,int, int, bool);
+        Computer(const Computer&);
+
+        void makeMove(); //will use the cstdlib library to choose random number for row and column
+};
+#endif
