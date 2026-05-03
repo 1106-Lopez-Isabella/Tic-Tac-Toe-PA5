@@ -9,7 +9,7 @@ class User{
         int win,lose; 
     public:
         User();
-        User(string,string,int, int, bool);
+        User(string,string,int, int, bool, bool);
         User(const User&);
         string getName();
         string getSymbol();

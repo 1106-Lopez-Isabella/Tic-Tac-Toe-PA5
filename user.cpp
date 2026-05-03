@@ -8,12 +8,13 @@ User::User(){
     int win = 0;
     int lose = 0;
 }
-User::User(string n, string s, int r, int c, bool w){ //do we need to add bool l for lose to this?
+User::User(string n, string s, int r, int c, bool w, bool l){
     name = n;
     symbol = s;
     row = r;
     column = c;
     win = w;
+    lose = l;
 }
 User::User(const User& rhs){
     name = rhs.name;
@@ -36,6 +37,12 @@ int User::getRow(){
 int User::getColumn(){
     return column;
 }
+int User::getWin(){
+    return win;
+}
+int User::getLose(){
+    return lose;
+}
 void User::setName(string n){
     name = n;
 }
@@ -51,7 +58,9 @@ void User::setColumn(int c){
 void User::setWin(int w){
     win = w;
 }
-//does lose need a getter & setter lmk and I'll added it just incase
+void User::setLose(int l){
+    lose = l;
+}
 void User::displayPlayerData(){
 
 }
