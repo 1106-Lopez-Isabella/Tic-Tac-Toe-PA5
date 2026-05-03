@@ -16,17 +16,18 @@ class User{
         int getRow();
         int getColumn();
         int getWin();
+        int getLose();
         
 
         void setName(string);
         void setId(string);
-        void setRow();
-        void setColumn();
-        void setWin();
+        void setRow(int);
+        void setColumn(int);
+        void setWin(int);
+        void setLose(int);
 
         void displayPlayerData();
 
         virtual void makeMove()=0;
-};
 };
 #endif
