@@ -11,8 +11,11 @@ class Board{
         Board(int, int);
         Board(const Board&);
 
-        getMaxRow
-        getMaxColumn
+        int getMaxRow();
+        int getMaxColumn();
+
+        void setMaxRow(int);
+        void setMaxColumn(int);
 
 
         void updateBoardInfo();

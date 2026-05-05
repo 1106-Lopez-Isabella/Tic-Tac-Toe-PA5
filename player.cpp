@@ -1,10 +1,20 @@
-int makeMove(){
-    int maxRow=board.getMaxRow;
-    int maxColumn=board.getMaxColumn;
+#include "player.h"
+Player::Player(){
+
+}
+Player::Player(string,string,int, int, bool){
+
+}
+Player::Player(const Player&){
+        
+ }
+int Player::makeMove(){
+    int maxRow=board.getMaxRow();
+    int maxColumn=board.getMaxColumn();
     int choice1,choice2;
 
     cout<<"Enter Row: "<<endl;
-    cin
+    cin>>choice1;           
     do{
         cin>>choice;
         validInput(choice,maxRow);
