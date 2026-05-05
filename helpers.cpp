@@ -87,16 +87,49 @@ void startGame() {
     cout<<"If you want to return to the main menu at any point, please enter 0"<<endl;
     bool gameOver = false;
     int i=0;
+    int row,column;
     while (!gameOver) {
-        cout<<usersArr[i]->getName<<", your turn!"<<endl;
+        cout<<usersArr[i]->getName()<<", your turn!"<<endl;
+        //show board so user can see their options
         displayBoard();
-        int choice=makeMove();
-
-        if (choice == "0") { 
+        //allows user to make their choice or lets computer do random choice
+        row=usersArr[i]->makeMove(1);
+        column=usersArr[i]->makeMove(2);
+        do{
+            spotOpen(row,column);
+            cout<<"That spot is already taken. Please enter a new one"
+            row=usersArr[i]->makeMove(1);
+            column=usersArr[i]->makeMove(2);
+        }while(!spotOpen(row,column));
+        
+        //exits the game if you choose 0
+        if (row== 0||column==0) { 
             return;
         }
-        updateBoardInfo();
-        gameOver=won();
-        gameOver=boardFull();
+        updateBoardInfo(row,column,usersArr[i].getSymbol);
+        if(won()){
+            if(i==0){
+                usersArr[0].setWin(usersArr[0].getWin()+1);
+                usersArr[1].setLose(usersArr[1].getLose+1);
+            }
+            else{
+                usersArr[1].setWin(usersArr[1].getWin()+1);
+                usersArr[0].setLose(usersArr[0].getLose+1);
+            }
+            gameOver=won();
+        }
+        if(boardFull()){
+            cout<<"No one won..."<<endl;
+            gameOver=boardFull();
+        }
+         if(i==1){
+            i=0
+        }
+        else{
+            i++;
+        }
     }
+}
+bool spotOpen(int choice){
+
 }

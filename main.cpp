@@ -7,8 +7,11 @@ int main(int argc, char** argv){
     User* usersArr[2];
     Player topPlayers[5];
     Board board;
-    int choice, choice2, playerAmount=1;
+    int choice, choice2,choice3;
+    int round=1;
+    int playerAmount=1;
 
+    //something to do with the top5Player file 
 	if(argc != 2)
 	{
         cout << "Incorrect format! Please use:  ./game top5Players.txt" << endl;
@@ -22,10 +25,12 @@ int main(int argc, char** argv){
         return 1;
     }
 
+    //program menu
     do{
         choice=programMenu();
         switch choice{
             case 1:
+                //make player one object
                 playerOne=createPlayer(playerAmount,"-");
                 playerAmount++;
                 cout<<"Do you want to play with (1) another Person or (2) a Computer"<<endl;
@@ -36,14 +41,17 @@ int main(int argc, char** argv){
 
                 switch choice{
                     case 1:
+                        //make player two object
                         cout<<"Player two, enter your information..."<<endl;
                         playerTwo=createPlayer(playerAmount,playerOne.getSymbol);
                         playerAmount++;
                     case 2:
+                        //make computer object
                         computer=createComputer(playerOne.getSymbol);
                     default:
                         cout<<"ERROR: check line 44 in main"<<endl;
                 }
+                //assigning who plays first 
                 if(playerAmount==2){
                     if(playerOne.getSymbol()=="X"){
                         usersArr[0]=&playerOne;
@@ -64,8 +72,17 @@ int main(int argc, char** argv){
                         usersArr[1]=&playerOne;
                     }
                 }
+                //actual start of the game
                 startGame();
+                do{
+                    cout<<"Continue?(Y/N)"<<endl;
+                    cin>>choice3;
+                    round++;
+                    cout<<"Round "<<round<<"..."
+                    startGame();
+                }while(choice3!="N"||choice3!="n");
             case 2:
+                //should display the infromation from top5Players 
                 viewScoreBoard();
             default:
                 cout<<"ERROR: check line 70 in main";

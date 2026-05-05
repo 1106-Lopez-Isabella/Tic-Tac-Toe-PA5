@@ -18,7 +18,7 @@ class Board{
         void setMaxColumn(int);
 
 
-        void updateBoardInfo();
+        void updateBoardInfo(int,int);
         void displayBoard();
         bool boardFull();
         int won();

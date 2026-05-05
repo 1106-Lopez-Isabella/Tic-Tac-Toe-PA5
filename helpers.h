@@ -11,6 +11,7 @@ void storeinFile(ifstream& inFile, Player* players);
 void programMenu();
 void displayScoreBoard();
 void gameOver();
+bool spotOpen();
 template <typename T>
 bool validInput(T c, int a){
     if(a==0){
