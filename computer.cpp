@@ -9,7 +9,7 @@ Computer::Computer(string n, string s, int r, int c, int w, int l):User(n, s, r,
 Computer::Computer(const Computer& rhs):User(rhs){
 
 }
-int Computer::makeMove(){
+int Computer::makeMove(int type){
     int random;
     random = rand() % 2;
     return random;

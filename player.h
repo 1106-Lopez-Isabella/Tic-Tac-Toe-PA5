@@ -7,14 +7,14 @@ using namespace std;
 
 class Board;
 
-class Player:public User{
+class Player: public User{
 
     public:
         Player();
         Player(string,string,int, int, bool);
         Player(const Player&);
 
-        int makeMove(int,const Board& board);
+        int makeMove(int);
         friend ostream& operator <<(ostream& out, const Player& Player);
 };
 #endif

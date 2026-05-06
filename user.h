@@ -3,7 +3,6 @@
 #include <iostream>
 #include <cstdlib>
 #include <string>
-#include "board.h"
 using namespace std;
 
 class User{
@@ -31,6 +30,6 @@ class User{
         void setWin(int);
         void setLose(int);
 
-        virtual int makeMove(int, const Board& board)=0;
+        virtual int makeMove(int)=0;
 };
 #endif
