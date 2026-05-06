@@ -4,17 +4,17 @@ Board::Board(){
     maxColumn=3;
     for(int r=0; r<maxRow; r++){
         for(int c=0; c<maxColumn; c++){
-            board[r][c] = " ";
+            board[r][c] = "-";
         }
     }
 }
 
-Board::Board(int r, int c){
+Board::Board(int r, int c, string s){
     maxRow = r;
     maxColumn =c;
     for(int r=0; r<maxRow; r++){
         for(int c=0; c<maxColumn; c++){
-            board[r][c]= " ";
+            board[r][c]= s;
         }
     }
 
@@ -53,8 +53,8 @@ void displayBoard(int r, int c){
 }
 void updateBoardInfo(int r,int c, string t){
     board[r][c]=t;
-    
 }
+
 bool boardFull(){
     int total=0;
     for(int r=0;r<3;r++){

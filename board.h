@@ -1,8 +1,8 @@
 #ifndef BOARD_H
 #define BOARD_H
 #include <iostream>
-#include "player.h"
 using namespace std;
+
 class Board{
     string board [3][3];
     int maxRow,maxColumn;
@@ -21,7 +21,6 @@ class Board{
         void updateBoardInfo(int,int);
         void displayBoard();
         bool boardFull();
-        int won();
-        void gameOver();
+        bool won();
 };
 #endif

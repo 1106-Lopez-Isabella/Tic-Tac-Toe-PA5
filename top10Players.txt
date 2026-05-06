@@ -19,3 +19,23 @@ LOSSES: 0
 NAME: empty
 WINS: 0
 LOSSES: 0
+6) 
+NAME: empty
+WINS: 0
+LOSSES: 0
+7) 
+NAME: empty
+WINS: 0
+LOSSES: 0
+8) 
+NAME: empty
+WINS: 0
+LOSSES: 0
+9) 
+NAME: empty
+WINS: 0
+LOSSES: 0
+10) 
+NAME: empty
+WINS: 0
+LOSSES: 0

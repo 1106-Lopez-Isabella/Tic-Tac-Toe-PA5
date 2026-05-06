@@ -1,6 +1,7 @@
 #ifndef USER_H
 #define USER_H
 #include <iostream>
+#include <helpers.h>
 using namespace std;
 
 class User{
@@ -12,6 +13,7 @@ class User{
         User();
         User(string,string,int, int, int, int);
         User(const User&);
+        
         string getName();
         string getSymbol();
         int getRow();

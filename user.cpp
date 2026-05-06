@@ -46,7 +46,7 @@ int User::getLose(){
 void User::setName(string n){
     name = n;
 }
-void User::setId(string s){
+void User::setSymbol(string s){
     symbol = s;
 }
 void User::setRow(int r){

@@ -9,6 +9,8 @@ Computer::Computer(string n, string s, int r, int c, bool w, bool l):User(n, s, 
 Computer::Computer(const Computer& rhs):User(rhs){
 
 }
-void makeMove(){
-    
+int Computer::makeMove(){
+    int random;
+    random = rand() % 2;
+    return random;
 }
