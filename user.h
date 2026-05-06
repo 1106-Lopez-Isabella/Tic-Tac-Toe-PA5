@@ -1,7 +1,8 @@
 #ifndef USER_H
 #define USER_H
 #include <iostream>
-#include <helpers.h>
+#include "helpers.h"
+#include "board.h"
 using namespace std;
 
 class User{
@@ -29,6 +30,6 @@ class User{
         void setWin(int);
         void setLose(int);
 
-        virtual void makeMove()=0;
+        virtual int makeMove(int, const Board& board)=0;
 };
 #endif

@@ -27,7 +27,7 @@ bool validInput(T c, int a){
         }
     }
     else {
-        if(c!="X"||c!="x"||x!="O"||c!="o"){
+        if(c!="X"||c!="x"||c!="O"||c!="o"){
            cout<<"ERROR: enter valid input"<<endl;
             return false; 
         }
