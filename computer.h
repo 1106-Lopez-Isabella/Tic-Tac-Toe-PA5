@@ -1,9 +1,6 @@
 #ifndef COMPUTER_H
 #define COMPUTER_H
 #include "user.h"
-#include <iostream>
-#include <cstdlib>
-#include <string>
 using namespace std;
 
 
