@@ -3,6 +3,7 @@
 #define HELPERS_H
 #include <iostream>
 #include <string>
+using namespace std;
 
 Player createPlayer();
 void lookinFile(ifstream& inFile, Player* players);

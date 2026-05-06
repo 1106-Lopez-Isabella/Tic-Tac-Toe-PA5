@@ -4,7 +4,7 @@ game: computer.o player.o user.o board.o main.o helpers.o
 main.o: main.cpp helpers.h board.h computer.h player.h user.h
 	g++ -c main.cpp
 
-player.o:  player.cpp player.h user.h board.h helpers.h
+player.o:  player.cpp player.h user.h helpers.h
 	g++ -c player.cpp
 
 computer.o: computer.cpp computer.h  user.h

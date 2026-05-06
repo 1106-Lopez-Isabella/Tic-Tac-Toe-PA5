@@ -3,7 +3,6 @@
 #include <iostream>
 #include <cstdlib>
 #include <string>
-#include "helpers.h"
 using namespace std;
 
 class User{

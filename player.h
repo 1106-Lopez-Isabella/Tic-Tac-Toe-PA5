@@ -1,6 +1,7 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 #include "user.h"
+#include "helpers.h"
 using namespace std;
 
 class Board;
