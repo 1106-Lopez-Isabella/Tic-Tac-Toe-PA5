@@ -1,7 +1,7 @@
-#include "Player.h"
 
 #ifndef HELPERS_H
 #define HELPERS_H
+#include "Player.h"
 
 Player createPlayer();
 void lookinFile(ifstream& inFile, Player* players);

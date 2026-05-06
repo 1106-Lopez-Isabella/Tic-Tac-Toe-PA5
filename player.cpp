@@ -1,11 +1,11 @@
 #include "player.h"
-Player::Player(){
+Player::Player():User(){
 
 }
-Player::Player(string,string,int, int, bool){
+Player::Player(string,string,int, int, bool):User(n, s, r, c, w, l){
 
 }
-Player::Player(const Player&){
+Player::Player(const Player&):User(rhs){
         
  }
 int Player::makeMove(int choice){

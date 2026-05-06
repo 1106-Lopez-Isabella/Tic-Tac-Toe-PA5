@@ -1,3 +1,5 @@
+#include "helpers.h"
+
 void readCoursesFile(ifstream& inFile, Player arrPlayer)
 {
 	int count = 0; 
