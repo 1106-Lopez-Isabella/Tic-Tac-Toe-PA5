@@ -11,8 +11,9 @@ class User{
         int win,lose; 
     public:
         User();
-        User(string,string,int, int, bool, bool);
+        User(string,string,int, int, int, int);
         User(const User&);
+        
         string getName();
         string getSymbol();
         int getRow();
@@ -28,8 +29,6 @@ class User{
         void setWin(int);
         void setLose(int);
 
-        void displayPlayerData();
-
-        virtual void makeMove()=0;
+        virtual int makeMove(int, const Board& board)=0;
 };
 #endif

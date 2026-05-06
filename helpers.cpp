@@ -90,33 +90,47 @@ void startGame() {
     bool gameOver = false;
     int i=0;
     int row,column;
+    string choices[2];
+
     while (!gameOver) {
+        //tells user it's their turn
         cout<<usersArr[i]->getName()<<", your turn!"<<endl;
+
         //show board so user can see their options
         displayBoard();
+
         //allows user to make their choice or lets computer do random choice
-        row=usersArr[i]->makeMove(1);
-        column=usersArr[i]->makeMove(2);
+        //also checks if that spot is open, if not it will ask the user to choose another spot until they choose an open spot
         do{
-            spotOpen(row,column);
-            cout<<"That spot is already taken. Please enter a new one"
-            row=usersArr[i]->makeMove(1);
-            column=usersArr[i]->makeMove(2);
-        }while(!spotOpen(row,column));
+            choices[0]=usersArr[i]->makeMove(1);
+            choices[1]=usersArr[i]->makeMove(2);
+            spotOpen(choices[0],choices[1]);
+            if(!spotOpen(choices[0],choices[1])&&usersArr[i]->getName()!="computer"){
+                cout<<"That spot is already taken, please choose another spot."<<endl;
+            }
+
+        }while(!spotOpen(choices[0],choices[1]));
         
         //exits the game if you choose 0
         if (row== 0||column==0) { 
             return;
         }
+        //updates the board with the user's choice
         updateBoardInfo(row,column,usersArr[i].getSymbol);
+        
+        //checks if the user won or if the board is full, if either of those are true, it will end the game and update the score board
         if(won()){
             if(i==0){
                 usersArr[0].setWin(usersArr[0].getWin()+1);
                 usersArr[1].setLose(usersArr[1].getLose+1);
+                cout<<usersArr[0].getName()<<" won!"<<endl;
+                cout<<usersArr[1].getName()<<" lost..."<<endl;
             }
             else{
                 usersArr[1].setWin(usersArr[1].getWin()+1);
                 usersArr[0].setLose(usersArr[0].getLose+1);
+                cout<<usersArr[1].getName()<<" won!"<<endl;
+                cout<<usersArr[0].getName()<<" lost..."<<endl;
             }
             gameOver=won();
         }
@@ -124,14 +138,12 @@ void startGame() {
             cout<<"No one won..."<<endl;
             gameOver=boardFull();
         }
-         if(i==1){
+
+        if(i==1){
             i=0
         }
         else{
             i++;
         }
     }
-}
-bool spotOpen(int choice){
-
 }

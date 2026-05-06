@@ -12,7 +12,7 @@ int main(int argc, char** argv){
     int playerAmount=1;
 
     //something to do with the top5Player file 
-	if(argc != 2)
+	/*if(argc != 2)
 	{
         cout << "Incorrect format! Please use:  ./game top5Players.txt" << endl;
         return 1;
@@ -23,7 +23,7 @@ int main(int argc, char** argv){
 	{
         cout << "Top 5 Player File not found..." << endl;
         return 1;
-    }
+    }*/
 
     //program menu
     do{
@@ -81,8 +81,10 @@ int main(int argc, char** argv){
                     cout<<"Round "<<round<<"..."
                     startGame();
                 }while(choice3!="N"||choice3!="n");
+                wrtieToFile(usersArr,playerAmount);
+                choice=0;
             case 2:
-                //should display the infromation from top5Players 
+                //should display the information from top5Players 
                 viewScoreBoard();
             default:
                 cout<<"ERROR: check line 70 in main";

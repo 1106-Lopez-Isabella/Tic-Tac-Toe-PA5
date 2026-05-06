@@ -1,7 +1,7 @@
 
 #ifndef HELPERS_H
 #define HELPERS_H
-#include "Player.h"
+#include "player.h"
 
 Player createPlayer();
 void lookinFile(ifstream& inFile, Player* players);
@@ -27,7 +27,7 @@ bool validInput(T c, int a){
         }
     }
     else {
-        if(c!="X"||c!="x"||x!="O"||c!="o"){
+        if(c!="X"||c!="x"||c!="O"||c!="o"){
            cout<<"ERROR: enter valid input"<<endl;
             return false; 
         }
