@@ -1,9 +1,8 @@
 #ifndef COMPUTER_H
 #define COMPUTER_H
 #include "user.h"
-#include <iostream>
-#include <cstdlib>
 using namespace std;
+
 class Computer:public User{
 
     public:

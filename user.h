@@ -1,7 +1,9 @@
 #ifndef USER_H
 #define USER_H
 #include <iostream>
+#include <cstdlib>
 using namespace std;
+
 class User{
     protected:
         string name, symbol;
