@@ -2,7 +2,10 @@
 #define PLAYER_H
 #include "user.h"
 #include <iostream>
+#include <string>
 using namespace std;
+
+class Board;
 
 class Player:public User{
 
