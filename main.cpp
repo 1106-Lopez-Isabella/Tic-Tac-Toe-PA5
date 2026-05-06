@@ -82,7 +82,7 @@ int main(int argc, char** argv){
                     startGame();
                 }while(choice3!="N"||choice3!="n");
             case 2:
-                //should display the infromation from top5Players 
+                //should display the information from top5Players 
                 viewScoreBoard();
             default:
                 cout<<"ERROR: check line 70 in main";

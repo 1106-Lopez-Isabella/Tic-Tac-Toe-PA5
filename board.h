@@ -8,7 +8,7 @@ class Board{
     int maxRow,maxColumn;
     public:
         Board();
-        Board(int, int);
+        Board(int, int, string);
         Board(const Board&);
 
         int getMaxRow();

@@ -2,20 +2,20 @@ TOP 5 PLAYERS:
 1) 
 NAME: empty
 WINS: 0
-LOSTS: 0
+LOSSES: 0
 2) 
 NAME: empty
 WINS: 0
-LOSTS: 0
+LOSSES: 0
 3) 
 NAME: empty
 WINS: 0
-LOSTS: 0
+LOSSES: 0
 4) 
 NAME: empty
 WINS: 0
-LOSTS: 0
-4) 
+LOSSES: 0
+5) 
 NAME: empty
 WINS: 0
-LOSTS: 0
+LOSSES: 0

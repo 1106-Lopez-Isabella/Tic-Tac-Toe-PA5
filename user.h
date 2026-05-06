@@ -2,6 +2,7 @@
 #define USER_H
 #include <iostream>
 using namespace std;
+
 class User{
     protected:
         string name, symbol;
@@ -9,7 +10,7 @@ class User{
         int win,lose; 
     public:
         User();
-        User(string,string,int, int, bool, bool);
+        User(string,string,int, int, int, int);
         User(const User&);
         string getName();
         string getSymbol();
@@ -25,8 +26,6 @@ class User{
         void setColumn(int);
         void setWin(int);
         void setLose(int);
-
-        void displayPlayerData();
 
         virtual void makeMove()=0;
 };
