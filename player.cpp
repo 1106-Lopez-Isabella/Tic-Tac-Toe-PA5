@@ -6,26 +6,24 @@ Player::Player():User(){
 Player::Player(string n,string s,int r, int c, int w, int l):User(n, s, r, c, w, l){
 
 }
-Player::Player(const Player&):User(rhs){
+Player::Player(const Player& rhs):User(rhs){
         
  }
 int Player::makeMove(int type){
     int entry;
-    if(choice==1){
-        cout<<"Enter Row: "<<endl;          
+    //prompts user for row or column
+    if(type==1){
+        entry=validInput<int>("Enter Row: ",1,3);          
     }
     else{
-        cout<<"Enter Column: "<<endl;
+        entry=validInput<int>("Enter Column: ",1,3);
     }
-    do{
-        cin>>entry; 
-        validInput<int>(entry-1,3);
-    }while(!validInput<int>(entry-1,3));
 
     return entry-1;
 }
-ostream& Player::operator <<(ostream& out, const Player& Player){
-    out<<"NAME: "<<Player.getName()<<endl;
-    out<<"WINS: "<<Player.getWin()<<endl;
-    out<<"LOSSES: "<<Player.getLose()<<endl;
+ostream& operator <<(ostream& out, const Player& p){
+    out<<"NAME: "<<p.getName()<<endl;
+    out<<"WINS: "<<p.getWin()<<endl;
+    out<<"LOSSES: "<<p.getLose()<<endl;
+    return out;
 }

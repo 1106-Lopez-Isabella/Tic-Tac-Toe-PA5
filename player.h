@@ -1,7 +1,7 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 #include "user.h"
-#include "helpers.h"
+#include "validInput.h"
 using namespace std;
 
 class Board;
@@ -10,7 +10,7 @@ class Player: public User{
 
     public:
         Player();
-        Player(string,string,int, int, bool);
+        Player(string,string,int, int, int,int);
         Player(const Player&);
 
         int makeMove(int);

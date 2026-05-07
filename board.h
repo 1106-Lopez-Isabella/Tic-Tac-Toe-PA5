@@ -2,6 +2,7 @@
 #define BOARD_H
 #include <iostream>
 #include <string>
+#include "validInput.h"
 using namespace std;
 
 class Board{
@@ -19,7 +20,7 @@ class Board{
         void setMaxColumn(int);
 
 
-        void updateBoardInfo(int,int);
+        void updateBoardInfo(int,int,string);
         void displayBoard();
         bool boardFull();
         bool won();

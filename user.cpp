@@ -25,7 +25,7 @@ User::User(const User& rhs){
     lose = rhs.lose;
 
 }
-string User::getName(){
+string User::getName()const{
     return name;
 }
 string User::getSymbol(){
@@ -37,10 +37,10 @@ int User::getRow(){
 int User::getColumn(){
     return column;
 }
-int User::getWin(){
+int User::getWin()const{
     return win;
 }
-int User::getLose(){
+int User::getLose()const{
     return lose;
 }
 void User::setName(string n){

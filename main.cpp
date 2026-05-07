@@ -1,4 +1,7 @@
 #include "board.h"
+#include "player.h"
+#include "computer.h"
+#include "helpers.h"
 
 int main(int argc, char** argv){
     Player playerOne;
@@ -7,7 +10,8 @@ int main(int argc, char** argv){
     User* usersArr[2];
     Player topPlayers[5];
     Board board;
-    int choice, choice2,choice3;
+    int choice, choice2;
+    string choice3;
     int round=1;
     int playerAmount=1;
 
@@ -28,26 +32,21 @@ int main(int argc, char** argv){
     //program menu
     do{
         choice=programMenu();
-        switch choice{
+        switch (choice){
             case 1:
                 //make player one object
                 playerOne=createPlayer(playerAmount,"-");
                 playerAmount++;
-                cout<<"Do you want to play with (1) another Person or (2) a Computer"<<endl;
-                do{
-                    cin>>choice2;
-                    validInput(choice2,2);
-                }while(!validInput<int>(choice2,2));
-
-                switch choice{
+                choice2=validInput<int>("Do you want to play with (1) another Person or (2) a Computer",1,2);
+                switch (choice2){
                     case 1:
                         //make player two object
                         cout<<"Player two, enter your information..."<<endl;
-                        playerTwo=createPlayer(playerAmount,playerOne.getSymbol);
+                        playerTwo=createPlayer(playerAmount,playerOne.getSymbol());
                         playerAmount++;
                     case 2:
                         //make computer object
-                        computer=createComputer(playerOne.getSymbol);
+                        computer=createComputer(playerOne.getSymbol());
                     default:
                         cout<<"ERROR: check line 44 in main"<<endl;
                 }
@@ -73,27 +72,30 @@ int main(int argc, char** argv){
                     }
                 }
                 //actual start of the game
-                startGame();
+                startGame(usersArr,board);
                 do{
                     cout<<"Continue?(Y/N)"<<endl;
                     cin>>choice3;
                     round++;
-                    cout<<"Round "<<round<<"..."
-                    startGame();
+                    cout<<"Round "<<round<<"..."<<endl;
+                    startGame(usersArr,board);
                 }while(choice3!="N"||choice3!="n");
-                wrtieToFile(usersArr,playerAmount);
+                //wrtieToFile(usersArr,playerAmount);
                 choice=0;
             case 2:
-                //should display the information from top5Players 
+                //should display the information from top5Players
+                //will probably take this out since you dont need to display it 
                 viewScoreBoard();
             default:
+                //just incase it bugs out
+                //will take this out
                 cout<<"ERROR: check line 70 in main";
                 return 0;
         }
     } while (choice != 0);
 }
 
-after these questions, make both users, game will start 
+/*after these questions, make both users, game will start 
 whoever chose X will go first
 do this until board is full  
 do that 3 times
@@ -103,7 +105,7 @@ if newgame, start the process over
 if quit, quit 
 if main menu, send to mainmenu
 
-important, whenever someone quits the game, make a file containing the User info
+important, whenever someone quits the game, make a file containing the User info*/
 
 
 

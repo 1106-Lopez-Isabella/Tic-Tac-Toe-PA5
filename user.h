@@ -15,16 +15,16 @@ class User{
         User(string,string,int, int, int, int);
         User(const User&);
         
-        string getName();
+        string getName()const;
         string getSymbol();
         int getRow();
         int getColumn();
-        int getWin();
-        int getLose();
+        int getWin()const;
+        int getLose()const;
         
 
         void setName(string);
-        void setId(string);
+        void setSymbol(string);
         void setRow(int);
         void setColumn(int);
         void setWin(int);

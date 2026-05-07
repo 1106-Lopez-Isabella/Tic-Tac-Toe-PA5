@@ -1,42 +1,23 @@
-
 #ifndef HELPERS_H
 #define HELPERS_H
 #include <iostream>
 #include <string>
+#include "board.h"
+#include "user.h"
+#include "player.h"
+#include "computer.h"
+#include "validInput.h"
 using namespace std;
 
-Player createPlayer();
+Player createPlayer(int,string);
+Computer createComputer(string);
 void lookinFile(ifstream& inFile, Player* players);
 void storeinFile(ifstream& inFile, Player* players);
 
 
-void programMenu();
-void displayScoreBoard();
+int programMenu();
+void startGame(User* usersArr[], Board&);
+void viewScoreBoard();
 void gameOver();
-bool spotOpen();
-template <typename T>
-bool validInput(T c, int a){
-    if(a==0){
-        return true;
-    }
-    else if(a!=0){
-        if(c>0&&c<a+1){
-            return true;
-        }
-        else{
-            cout<<"ERROR: enter valid input"<<endl;
-            return false;
-        }
-    }
-    else {
-        if(c!="X"||c!="x"||c!="O"||c!="o"){
-           cout<<"ERROR: enter valid input"<<endl;
-            return false; 
-        }
-        else{
-            return true;
-        }
-    }
-}
-
+bool spotOpen(int,int);
 #endif
