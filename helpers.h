@@ -9,8 +9,8 @@
 #include "validInput.h"
 using namespace std;
 
-Player createPlayer(int,string);
-Computer createComputer(string);
+Player createPlayer(int,char);
+Computer createComputer(char);
 void lookinFile(ifstream& inFile, Player* players);
 void storeinFile(ifstream& inFile, Player* players);
 
@@ -19,5 +19,5 @@ int programMenu();
 void startGame(User* usersArr[], Board&);
 void viewScoreBoard();
 void gameOver();
-bool spotOpen(int,int);
+bool spotOpen(int,int, Board&);
 #endif

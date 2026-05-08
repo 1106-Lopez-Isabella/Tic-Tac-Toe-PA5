@@ -10,7 +10,7 @@ class Player: public User{
 
     public:
         Player();
-        Player(string,string,int, int, int,int);
+        Player(string,char,int, int, int,int);
         Player(const Player&);
 
         int makeMove(int);

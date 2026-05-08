@@ -28,47 +28,45 @@
 }*/
 int programMenu(){
     cout<<"--------------------TIC-TAC-TOE-----------------------"<<endl<<"                      Welcome!                      "<<endl;
-    int choice=validInput<int>("Start Game (1)    View Score Board (2)   Exit Menu (0)",0,2);
+    int choice=validInput<int>("Start Game (1)    View Score Board (2)   Exit Menu (0)",2,0);
     return choice;
 }
-Player createPlayer(int amount, string s){
+Player createPlayer(int amount, char s){
 	Player player;
-	string name, symbol;
+	string name;
+    char symbol;
 
-	cout << "Please enter your first name: " << endl;
+	cout <<endl<< "Please enter your first name: " << endl;
     cin>>name;
     player.setName(name);
     //assigning symbol and checking if its an X or O
+    cout<<"This is the amount of players:"<<amount<<endl;
     if(amount==1){
-	    cout << "Please choose either the X or O: " << endl;
-        do{
-            cin>>symbol;
-            cout<<"invalid entry"<<endl;
-        }while(symbol!="X"&&symbol!="O");
+	    symbol=validInput<char>("Please choose either the X or O: ",'X','O');
     }
-    else{
-        if(s=="X"){
+    else if(amount==2){
+        if(s=='X'){
             cout<<"Your symbol will be O"<<endl;
-            symbol="O";
+            symbol='O';
         }
         else{
             cout<<"Your symbol will be X"<<endl;
-            symbol="X";
+            symbol='X';
         }
     }
     player.setSymbol(symbol);
 	return player;
 }
-Computer createComputer(string symbol)
+Computer createComputer(char symbol)
 {
 	Computer computer;
 
     computer.setName("Computer");
-    if(symbol=="X"){
-        computer.setSymbol("O");
+    if(symbol=='X'){
+        computer.setSymbol('O');
     }
     else{
-        computer.setSymbol("X");
+        computer.setSymbol('X');
     }
 
 	return computer;
@@ -77,18 +75,23 @@ void viewScoreBoard(){
     cout<<"nothing to see here..."<<endl;
     return;
 }
-bool spotOpen(int i ,int j){
-    cout<<"nothing in here yet..."<<endl;
-    return false;
+bool spotOpen(int r ,int c, Board& board){
+    if(board.getSpot(r,c)!='-'){
+        cout<<"That spot has already been taken. Try again"<<endl;
+        return false;
+    }
+    return true;
 }
 void startGame(User* usersArr[], Board& board) {
-    cout<<"If you want to return to the main menu at any point, please enter 0"<<endl;
+    cout<<"If you want to return to the main menu at any point, please enter 0 for both row and column"<<endl;
     bool gameOver = false;
     int i=0;
     int row,column;
-    int choices[2];
 
     while (!gameOver) {
+        gameOver=false;
+        bool isValid = false; 
+
         //tells user it's their turn
         cout<<usersArr[i]->getName()<<", your turn!"<<endl;
 
@@ -97,23 +100,18 @@ void startGame(User* usersArr[], Board& board) {
 
         //allows user to make their choice or lets computer do random choice
         //also checks if that spot is open, if not it will ask the user to choose another spot until they choose an open spot
-        do{
-            choices[0]=usersArr[i]->makeMove(1);
-            choices[1]=usersArr[i]->makeMove(2);
-            spotOpen(choices[0],choices[1]);
-            if(!spotOpen(choices[0],choices[1])&&usersArr[i]->getName()!="computer"){
-                cout<<"That spot is already taken, please choose another spot."<<endl;
-            }
-
-        }while(!spotOpen(choices[0],choices[1]));
-        
-        //exits the game if you choose 0
+        while(!isValid){
+            isValid=false;
+            row=usersArr[i]->makeMove(1);
+            column=usersArr[i]->makeMove(2);
+            isValid=spotOpen(row,column,board);
+        }
         if (row== 0||column==0) { 
             return;
         }
+
         //updates the board with the user's choice
         board.updateBoardInfo(row,column,usersArr[i]->getSymbol());
-        
         //checks if the user won or if the board is full, if either of those are true, it will end the game and update the score board
         if(board.won()){
             if(i==0){

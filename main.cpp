@@ -4,14 +4,12 @@
 #include "helpers.h"
 
 int main(int argc, char** argv){
-    Player playerOne;
-    Player playerTwo;
+    Player playerOne, playerTwo;
     Computer computer;
     User* usersArr[2];
-    Player topPlayers[5];
     Board board;
-    int choice, choice2;
-    string choice3;
+    int choice;
+    char choice2;
     int round=1;
     int playerAmount=1;
 
@@ -35,64 +33,60 @@ int main(int argc, char** argv){
         switch (choice){
             case 1:
                 //make player one object
-                playerOne=createPlayer(playerAmount,"-");
-                playerAmount++;
-                choice2=validInput<int>("Do you want to play with (1) another Person or (2) a Computer",1,2);
-                switch (choice2){
+                playerOne=createPlayer(playerAmount,'-');
+                choice=validInput<int>("Do you want to play with (1) another Person or (2) a Computer",2,1);
+                cout<<"this is your choice:"<<choice<<endl;
+                switch (choice){
                     case 1:
                         //make player two object
-                        cout<<"Player two, enter your information..."<<endl;
-                        playerTwo=createPlayer(playerAmount,playerOne.getSymbol());
                         playerAmount++;
+                        cout<<endl<<"Player two, enter your information..."<<endl;
+                        playerTwo=createPlayer(playerAmount,playerOne.getSymbol());
                     case 2:
                         //make computer object
                         computer=createComputer(playerOne.getSymbol());
-                    default:
-                        cout<<"ERROR: check line 44 in main"<<endl;
                 }
                 //assigning who plays first 
-                if(playerAmount==2){
-                    if(playerOne.getSymbol()=="X"){
-                        usersArr[0]=&playerOne;
-                        usersArr[1]=&playerTwo ; 
-                    }
-                else{
-                    usersArr[0]=&playerTwo;
-                    usersArr[1]=&playerOne;
-                }
-                }
-                else{
-                    if(playerOne.getSymbol()=="X"){
+                if(playerAmount==1){
+                   if(playerOne.getSymbol()=='X'){
                         usersArr[0]=&playerOne;
                         usersArr[1]=&computer;
                     }
-                    else{
+                    else if(playerOne.getSymbol()=='O'){
                         usersArr[0]=&computer;
                         usersArr[1]=&playerOne;
+                    } 
+                }
+                else if(playerAmount==2){
+                    if(playerOne.getSymbol()=='X'){
+                        usersArr[0]=&playerOne;
+                        usersArr[1]=&playerTwo ; 
+                    }
+                    else if(playerOne.getSymbol()=='O'){
+                    usersArr[0]=&playerTwo;
+                    usersArr[1]=&playerOne;
                     }
                 }
+                cout<<usersArr[0]->getName()<<endl;
+                cout<<usersArr[1]->getName()<<endl;
                 //actual start of the game
                 startGame(usersArr,board);
                 do{
-                    cout<<"Continue?(Y/N)"<<endl;
-                    cin>>choice3;
+                    choice2=validInput<char>("Continue?(Y/N)",'Y','N');
                     round++;
                     cout<<"Round "<<round<<"..."<<endl;
                     startGame(usersArr,board);
-                }while(choice3!="N"||choice3!="n");
+                }while(choice2!='N');
                 //wrtieToFile(usersArr,playerAmount);
                 choice=0;
             case 2:
                 //should display the information from top5Players
                 //will probably take this out since you dont need to display it 
-                viewScoreBoard();
+                //viewScoreBoard();
             default:
-                //just incase it bugs out
-                //will take this out
-                cout<<"ERROR: check line 70 in main";
                 return 0;
         }
-    } while (choice != 0);
+    }while (choice != 0);
 }
 
 /*after these questions, make both users, game will start 

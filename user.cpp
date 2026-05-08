@@ -1,14 +1,14 @@
 #include "user.h"
 
 User::User(){
-    string name = "empty";
-    string symbol = "-";
-    int row = 0;
-    int column = 0;
-    int win = 0;
-    int lose = 0;
+    name = "empty";
+    symbol = '-';
+    row = 0;
+    column = 0;
+    win = 0;
+    lose = 0;
 }
-User::User(string n, string s, int r, int c, int w, int l){
+User::User(string n, char s, int r, int c, int w, int l){
     name = n;
     symbol = s;
     row = r;
@@ -28,7 +28,7 @@ User::User(const User& rhs){
 string User::getName()const{
     return name;
 }
-string User::getSymbol(){
+char User::getSymbol(){
     return symbol;
 }
 int User::getRow(){
@@ -46,7 +46,7 @@ int User::getLose()const{
 void User::setName(string n){
     name = n;
 }
-void User::setSymbol(string s){
+void User::setSymbol(char s){
     symbol = s;
 }
 void User::setRow(int r){

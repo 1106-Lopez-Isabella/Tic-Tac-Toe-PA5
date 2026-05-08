@@ -7,16 +7,17 @@ using namespace std;
 
 class User{
     protected:
-        string name, symbol;
+        string name;
+        char symbol;
         int row,column;
         int win,lose; 
     public:
         User();
-        User(string,string,int, int, int, int);
+        User(string,char,int, int, int, int);
         User(const User&);
         
         string getName()const;
-        string getSymbol();
+        char getSymbol();
         int getRow();
         int getColumn();
         int getWin()const;
@@ -24,7 +25,7 @@ class User{
         
 
         void setName(string);
-        void setSymbol(string);
+        void setSymbol(char);
         void setRow(int);
         void setColumn(int);
         void setWin(int);

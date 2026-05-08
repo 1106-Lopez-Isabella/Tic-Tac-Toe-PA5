@@ -6,21 +6,22 @@
 using namespace std;
 
 class Board{
-    string board [3][3];
+    char board [3][3];
     int maxRow,maxColumn;
     public:
         Board();
-        Board(int, int, string);
+        Board(int, int, char);
         Board(const Board&);
 
         int getMaxRow();
         int getMaxColumn();
+        char getSpot(int,int);
 
         void setMaxRow(int);
         void setMaxColumn(int);
 
 
-        void updateBoardInfo(int,int,string);
+        void updateBoardInfo(int,int,char);
         void displayBoard();
         bool boardFull();
         bool won();

@@ -8,7 +8,7 @@ class Computer:public User{
 
     public:
         Computer();
-        Computer(string,string,int, int, int,int);
+        Computer(string,char,int, int, int,int);
         Computer(const Computer&);
 
         int makeMove(int); //will use the cstdlib library to choose random number for row and column

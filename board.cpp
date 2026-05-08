@@ -5,12 +5,12 @@ Board::Board(){
     maxColumn=3;
     for(int r=0; r<maxRow; r++){
         for(int c=0; c<maxColumn; c++){
-            board[r][c] = "-";
+            board[r][c] = '-';
         }
     }
 }
 
-Board::Board(int r, int c, string s){
+Board::Board(int r, int c, char s){
     maxRow = r;
     maxColumn =c;
     for(int r=0; r<maxRow; r++){
@@ -37,6 +37,9 @@ int Board::getMaxColumn(){
     return maxColumn;
 
 }
+char Board::getSpot(int r, int c){
+    return board[r][c];
+}
 
 void Board::setMaxRow(int r){
     maxRow = r;
@@ -52,14 +55,14 @@ void Board::displayBoard(){
         cout<<endl<<"-------------------"<<endl;
     }
 }
-void Board::updateBoardInfo(int r,int c, string t){
+void Board::updateBoardInfo(int r,int c, char t){
     board[r][c]=t;
 }
 bool Board::boardFull(){
-    int total=0;
+    int total;
     for(int r=0;r<maxRow;r++){
         for(int c=0;c<maxColumn;c++){
-            if(board[r][c]=="X"||board[r][c]=="O"){
+            if(board[r][c]=='X'||board[r][c]=='O'){
                 total++;
             }
         }
@@ -70,58 +73,22 @@ bool Board::boardFull(){
     return false;
 }
 bool Board::won(){
-    // Check rows
-    for(int row=0; row<maxRow; row++){
-        string first = board[row][0];
-        if(first == " ") continue;
-        bool win = true;
-        for(int c=1; c<maxColumn; c++){
-            if(board[row][c] != first){
-                win = false;
-                break;
-            }
-        }
-        if(win) return true;
+    for (int i = 0; i < 3; i++) {
+        // Check Rows
+        if (board[i][0] != '-' && board[i][0] == board[i][1] && board[i][1] == board[i][2])
+            return true;
+        
+        // Check Columns
+        if (board[0][i] != '-' && board[0][i] == board[1][i] && board[1][i] == board[2][i])
+            return true;
     }
-    // Check columns
-    for(int col=0; col<maxColumn; col++){
-        string first = board[0][col];
-        if(first == " ") continue;
-        bool win = true;
-        for(int r=1; r<maxRow; r++){
-            if(board[r][col] != first){
-                win = false;
-                break;
-            }
-        }
-        if(win) return true;
-    }
-    // Check diagonals if square
-    if(maxRow == maxColumn){
-        // Main diagonal
-        string first = board[0][0];
-        if(first != " "){
-            bool win = true;
-            for(int i=1; i<maxRow; i++){
-                if(board[i][i] != first){
-                    win = false;
-                    break;
-                }
-            }
-            if(win) return true;
-        }
-        // Anti-diagonal
-        first = board[0][maxColumn-1];
-        if(first != " "){
-            bool win = true;
-            for(int i=1; i<maxRow; i++){
-                if(board[i][maxColumn-1-i] != first){
-                    win = false;
-                    break;
-                }
-            }
-            if(win) return true;
-        }
-    }
-    return false;
+
+    // Check Diagonals
+    if (board[0][0] != '-' && board[0][0] == board[1][1] && board[1][1] == board[2][2])
+        return true;
+
+    if (board[0][2] != '-' && board[0][2] == board[1][1] && board[1][1] == board[2][0])
+        return true;
+
+    return false; // No winner yet
 }
