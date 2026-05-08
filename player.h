@@ -15,5 +15,6 @@ class Player: public User{
 
         int makeMove(int);
         friend ostream& operator <<(ostream& out, const Player& Player);
+        ~Player();
 };
 #endif

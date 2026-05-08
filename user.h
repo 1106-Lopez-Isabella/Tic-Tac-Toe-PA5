@@ -32,5 +32,6 @@ class User{
         void setLose(int);
 
         virtual int makeMove(int)=0;
+        virtual ~User();
 };
 #endif

@@ -12,5 +12,6 @@ class Computer:public User{
         Computer(const Computer&);
 
         int makeMove(int); //will use the cstdlib library to choose random number for row and column
+        ~Computer();
 };
 #endif
