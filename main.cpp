@@ -9,7 +9,7 @@ int main(int argc, char** argv){
     User* usersArr[2];
     Board board;
     int choice;
-    char choice2;
+    char choice2='Y';
     int round=1;
     int playerAmount=1;
 
@@ -35,7 +35,6 @@ int main(int argc, char** argv){
                 //make player one object
                 playerOne=createPlayer(playerAmount,'-');
                 choice=validInput<int>("Do you want to play with (1) another Person or (2) a Computer",2,1);
-                cout<<"this is your choice:"<<choice<<endl;
                 switch (choice){
                     case 1:
                         //make player two object
@@ -67,16 +66,14 @@ int main(int argc, char** argv){
                     usersArr[1]=&playerOne;
                     }
                 }
-                cout<<usersArr[0]->getName()<<endl;
-                cout<<usersArr[1]->getName()<<endl;
                 //actual start of the game
                 startGame(usersArr,board);
-                do{
+                while(choice!='N'){
                     choice2=validInput<char>("Continue?(Y/N)",'Y','N');
                     round++;
                     cout<<"Round "<<round<<"..."<<endl;
                     startGame(usersArr,board);
-                }while(choice2!='N');
+                }
                 //wrtieToFile(usersArr,playerAmount);
                 choice=0;
             case 2:

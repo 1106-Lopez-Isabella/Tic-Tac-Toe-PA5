@@ -40,7 +40,6 @@ Player createPlayer(int amount, char s){
     cin>>name;
     player.setName(name);
     //assigning symbol and checking if its an X or O
-    cout<<"This is the amount of players:"<<amount<<endl;
     if(amount==1){
 	    symbol=validInput<char>("Please choose either the X or O: ",'X','O');
     }
@@ -83,12 +82,14 @@ bool spotOpen(int r ,int c, Board& board){
     return true;
 }
 void startGame(User* usersArr[], Board& board) {
-    cout<<"If you want to return to the main menu at any point, please enter 0 for both row and column"<<endl;
     bool gameOver = false;
     int i=0;
     int row,column;
 
+    cout<<"If you want to return to the main menu at any point, please enter 0 for both row and column"<<endl;
+
     while (!gameOver) {
+        //dont get rid of this or it will crash
         gameOver=false;
         bool isValid = false; 
 
@@ -111,9 +112,9 @@ void startGame(User* usersArr[], Board& board) {
         }
 
         //updates the board with the user's choice
-        board.updateBoardInfo(row,column,usersArr[i]->getSymbol());
+        board.updateBoardInfo(row-1,column-1,usersArr[i]->getSymbol());
         //checks if the user won or if the board is full, if either of those are true, it will end the game and update the score board
-        if(board.won()){
+        if(!board.won()){
             if(i==0){
                 usersArr[0]->setWin(usersArr[0]->getWin()+1);
                 usersArr[1]->setLose(usersArr[1]->getLose()+1);
