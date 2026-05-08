@@ -26,3 +26,6 @@ ostream& operator <<(ostream& out, const Player& p){
     out<<"LOSSES: "<<p.getLose()<<endl;
     return out;
 }
+Player::~Player(){
+    delete [] player;
+}

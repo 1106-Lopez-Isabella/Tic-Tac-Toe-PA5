@@ -14,3 +14,6 @@ int Computer::makeMove(int type){
     random = rand() % 2;
     return random;
 }
+Computer::~Computer(){
+    delete [] computer;
+}
