@@ -13,16 +13,19 @@ int Player::makeMove(int type,int maxSize){
     int entry;
     //prompts user for row or column
     if(type==1){
+        //checks if it is valid
         entry=validInput<int>("Enter Row: ",maxSize,0);          
     }
     else{
+        //checks if it is valid
         entry=validInput<int>("Enter Column: ",maxSize,0);
     }
     return entry;
 }
 ostream& operator <<(ostream& out, const Player& p){
-    out<<"NAME: "<<p.getName()<<endl;
-    out<<"WINS: "<<p.getWin()<<endl;
-    out<<"LOSSES: "<<p.getLose()<<endl;
+    //prints out player information
+    out<<"NAME:"<<p.getName()<<endl;
+    out<<"WINS:"<<p.getWin()<<endl;
+    out<<"LOSSES:"<<p.getLose()<<endl;
     return out;
 }

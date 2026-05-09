@@ -17,8 +17,7 @@ Computer createComputer(char);
 int programMenu();
 void startGame(User* usersArr[], Board&, int,int);
 void gameOver();
-bool spotOpen(int,int,int, Board&);
+bool spotOpen(int,int,int, User*,Board&);
 int viewPlayerInformation(Player,Player);
 void savePlayerData(User* usersArr[],int amount);
-void readPlayerData(ifstream&,Player pastUsers[]);
 #endif

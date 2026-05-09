@@ -1,31 +1,5 @@
 #include "helpers.h"
 
-/*void readCoursesFile(ifstream& inFile, Player arrPlayer)
-{
-	int count = 0; 
-	int numC;
-	string name;
-    int wins, losts;
-	getline(inFile, junk);
-    for(int i=0;i<5;i++){
-	    while(!inFile.eof())
-	    {
-            getline(inFile, junk);
-            getline(inFile,junk,':');
-            getline(inFile,name);
-		    arrPlayer[i].setName(name);
-
-		    getline(inFile, junk, ':');
-		    getline(inFile,wins);
-		    arrPlayer[i].setWin(wins);
-
-		    getline(inFile, junk, ':');
-		    getline(inFile,losts);
-		    arrPlayer[i].setLose(losts);
-
-	    }
-    }
-}*/
 int programMenu(){
     cout<<"--------------------TIC-TAC-TOE-----------------------"<<endl<<"                      Welcome!                      "<<endl;
     int choice=validInput<int>("Start New Game (1)    View Current Player Information (2)   Exit Game (0)",2,0);
@@ -36,9 +10,11 @@ Player createPlayer(int amount, char s){
 	string name;
     char symbol;
 
+    //prompt for name
 	cout <<endl<< "Please enter your first name: " << endl;
     cin>>name;
     player.setName(name);
+
     //assigning symbol and checking if its an X or O
     if(amount==1){
 	    symbol=validInput<char>("Please choose either the X or O: ",'X','O');
@@ -78,9 +54,9 @@ int viewPlayerInformation(Player playerOne, Player playerTwo){
     int choice=validInput<int>("Enter 0 to go back to the main menu",0,0);
     return choice;
 }
-bool spotOpen(int r ,int c, int playerAmount, Board& board){
+bool spotOpen(int r ,int c, User* player, Board& board){
     if(board.getSpot(r,c)!='-'){
-        if(playerAmount==2){
+        if(player->getName()!="Computer"){
             cout<<"That spot has already been taken. Try again"<<endl;
         }
         return false;
@@ -93,10 +69,9 @@ void startGame(User* usersArr[], Board& board, int playerAmount, int maxSize) {
     int row,column;
 
     board.clearBoard();
-    cout<<"If you want to return to the main menu at any point, please enter 0 for both row and column"<<endl;
+    cout<<"If you want to return to the main menu at any point, please enter 0 for both row and column"<<endl<<endl;
 
     while (!gameOver) {
-        //dont get rid of this or it will crash
         gameOver=false;
         bool isValid = false; 
 
@@ -118,15 +93,17 @@ void startGame(User* usersArr[], Board& board, int playerAmount, int maxSize) {
                 row=usersArr[i]->makeMove(1,maxSize);
                 column=usersArr[i]->makeMove(2,maxSize);
             }
-                isValid=spotOpen(row-1,column-1, playerAmount, board);
+                isValid=spotOpen(row-1,column-1, usersArr[i], board);
         }
+        //if they choose 0 for both it send them to the menu
         if (row== 0||column==0) { 
             return;
         }
 
         //updates the board with the user's choice
         board.updateBoardInfo(row-1,column-1,usersArr[i]->getSymbol());
-        //checks if the user won or if the board is full, if either of those are true, it will end the game and update the score board
+
+        //checks if the user won or if the board is full, if either of those are true, it will end the game and update their wins and losts
         if(board.won()){
             board.won();
             board.displayBoard();
@@ -171,26 +148,4 @@ void savePlayerData(User* usersArr[],int amount){
         }
     }
 } 
-void readPlayerData (ifstream& inFile, Player pastUsers[]){
-    Player temp;
-	string name,sWin,sLose,junk;
-    int win,lose;
-	int i=0;
-	getline(inFile,junk);
 
-	while (!inFile.eof()){
-		getline(inFile,junk,':');
-		getline(inFile,name);
-        temp.setName(name);
-		getline(inFile,junk,':');
-		getline(inFile,sWin);
-        win=stoi(sWin);
-        temp.setWin(win);
-		getline(inFile,junk,':');
-        getline(inFile,sLose);
-        lose=stoi(sLose);
-        temp.setLose(lose);
-        pastUsers[i]=temp;
-		i++;
-	}
-}
