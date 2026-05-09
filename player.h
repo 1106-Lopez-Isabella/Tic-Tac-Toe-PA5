@@ -13,8 +13,7 @@ class Player: public User{
         Player(string,char,int, int, int,int);
         Player(const Player&);
 
-        int makeMove(int);
+        int makeMove(int,int);
         friend ostream& operator <<(ostream& out, const Player& Player);
-        ~Player();
 };
 #endif

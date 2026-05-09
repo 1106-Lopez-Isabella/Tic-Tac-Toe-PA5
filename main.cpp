@@ -6,32 +6,32 @@
 int main(int argc, char** argv){
     Player playerOne, playerTwo;
     Computer computer;
-    User* usersArr[2];
-    Board board;
+    User* usersArr[2]={&playerOne,&playerTwo};
+    Player pastUsers[2];
+    Board* board=nullptr;
     int choice;
     char choice2='Y';
     int round=1;
     int playerAmount=1;
 
-    //something to do with the top5Player file 
-	/*if(argc != 2)
+    if(argc != 2)
 	{
-        cout << "Incorrect format! Please use:  ./game top5Players.txt" << endl;
+        cout << "Incorrect format! Please use:  ./game playerData.txt" << endl;
         return 1;
     }
 
 	ifstream playerData(argv[1]);
-    if(!top5Players.is_open())
+    if(!playerData.is_open())
 	{
-        cout << "Top 5 Player File not found..." << endl;
+        cout << "Player Data File not found..." << endl;
         return 1;
-    }*/
-
+    }
+    readPlayerData(playerData,pastUsers);
     //program menu
     do{
         choice=programMenu();
         switch (choice){
-            case 1:
+            case 1:{
                 //make player one object
                 playerOne=createPlayer(playerAmount,'-');
                 choice=validInput<int>("Do you want to play with (1) another Person or (2) a Computer",2,1);
@@ -41,9 +41,11 @@ int main(int argc, char** argv){
                         playerAmount++;
                         cout<<endl<<"Player two, enter your information..."<<endl;
                         playerTwo=createPlayer(playerAmount,playerOne.getSymbol());
+                        break;
                     case 2:
                         //make computer object
                         computer=createComputer(playerOne.getSymbol());
+                        break;
                 }
                 //assigning who plays first 
                 if(playerAmount==1){
@@ -66,24 +68,29 @@ int main(int argc, char** argv){
                     usersArr[1]=&playerOne;
                     }
                 }
-                //actual start of the game
-                startGame(usersArr,board);
-                while(choice!='N'){
-                    choice2=validInput<char>("Continue?(Y/N)",'Y','N');
+                int size=validInput<int>("Enter board size (from 3 to 5):",5,3);
+                board=new Board(size);
+                //actual start of the game, also checks if the user wants to contiue the same game
+                choice2='Y';
+                while(choice2!='N'){
+                    startGame(usersArr,*board, playerAmount,size);
                     round++;
-                    cout<<"Round "<<round<<"..."<<endl;
-                    startGame(usersArr,board);
+                    choice2=validInput<char>("Continue?(Y/N)",'Y','N');
+                    if(choice2=='Y'){
+                        cout<<"Round "<<round<<"..."<<endl;
+                    }
                 }
-                //wrtieToFile(usersArr,playerAmount);
-                choice=0;
+                delete board;
+                board=nullptr;
+                playerAmount=1;
+                break;
+            }
             case 2:
-                //should display the information from top5Players
-                //will probably take this out since you dont need to display it 
-                //viewScoreBoard();
-            default:
-                return 0;
+                choice=viewPlayerInformation(playerOne,playerTwo)+1;
+                break;
         }
     }while (choice != 0);
+    savePlayerData(usersArr,playerAmount);
 }
 
 /*after these questions, make both users, game will start 

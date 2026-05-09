@@ -2,6 +2,7 @@
 #define HELPERS_H
 #include <iostream>
 #include <string>
+#include <fstream>
 #include "board.h"
 #include "user.h"
 #include "player.h"
@@ -11,13 +12,13 @@ using namespace std;
 
 Player createPlayer(int,char);
 Computer createComputer(char);
-void lookinFile(ifstream& inFile, Player* players);
-void storeinFile(ifstream& inFile, Player* players);
 
 
 int programMenu();
-void startGame(User* usersArr[], Board&);
-void viewScoreBoard();
+void startGame(User* usersArr[], Board&, int,int);
 void gameOver();
-bool spotOpen(int,int, Board&);
+bool spotOpen(int,int,int, Board&);
+int viewPlayerInformation(Player,Player);
+void savePlayerData(User* usersArr[],int amount);
+void readPlayerData(ifstream&,Player pastUsers[]);
 #endif

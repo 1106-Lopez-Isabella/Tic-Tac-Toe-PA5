@@ -10,11 +10,16 @@ T validInput(string prompt,T max, T min){
     bool isValid = false;
 
     cout<<prompt<<endl;
-
     while(!isValid){
         isValid=false;
         cin>>entry;
-        if(min==0||min==1){
+        if (cin.fail()) { 
+            cin.clear(); 
+            cin.ignore(1000, '\n'); 
+            cout << "Invalid input, please enter a number." << endl;
+            continue;
+        }
+        if(min==0||min==1||min==3){
             if(entry>=min&& entry<=max){
                 isValid=true;
             }

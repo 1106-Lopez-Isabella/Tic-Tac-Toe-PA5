@@ -61,6 +61,3 @@ void User::setWin(int w){
 void User::setLose(int l){
     lose = l;
 }
-  User::~User(){
-     delete User;
- }

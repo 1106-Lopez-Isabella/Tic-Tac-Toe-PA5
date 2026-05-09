@@ -31,7 +31,6 @@ class User{
         void setWin(int);
         void setLose(int);
 
-        virtual int makeMove(int)=0;
-        virtual ~User();
+        virtual int makeMove(int,int)=0;
 };
 #endif
