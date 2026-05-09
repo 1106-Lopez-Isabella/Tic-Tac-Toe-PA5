@@ -1,4 +1,5 @@
 Tic-Tac-Toe project for CS 202 by Isabella Lopez and Reena Bagchi 
+Date: 5/8/2026
 Name: Tic-Tac-Toe
 How to compile: In terminal type make and then push the enter key to compile. 
 How to play: After compiling type "./game playerData.txt" without the quotes in the terminal and press enter to run the game.

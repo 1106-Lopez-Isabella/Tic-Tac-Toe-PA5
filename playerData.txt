@@ -1,4 +1,4 @@
 PlAYER DATA
-NAME: 1
-WINS: 0
+NAME: test
+WINS: 1
 LOSSES: 0
